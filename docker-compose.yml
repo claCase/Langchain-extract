@@ -1,0 +1,37 @@
+services:
+  capco2:
+    image: capco2
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+  extractor:
+    build:
+      context: ./extractor
+      dockerfile: dockerfile
+    volumes:
+      - shared_data:/app/data
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATA_PATH=/app/data
+      - API_KEY_COHERE=RMHZAa9FEc4lbdNPf2YXyp6nsyWZVuKLJdvFQkdY
+      - API_KEY_ANTHROPIC=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
+      - FROM_PAGE=63
+      - TO_PAGE=74
+      - COHERE=False
+      - TEMPERATURE=0.1
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: dockerfile
+    volumes:
+      - shared_data:/app/data
+    ports:
+      - "8501:8501"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATA_PATH=/app/data
+
+volumes:
+  shared_data:

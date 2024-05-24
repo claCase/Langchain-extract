@@ -1,0 +1,12 @@
+langchain
+langchain-core
+langchain-community
+langchain_anthropic
+langchain-cohere
+cohere
+numpy 
+pandas 
+pypdf
+asyncio
+requests
+datetime
